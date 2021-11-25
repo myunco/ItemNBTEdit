@@ -1,0 +1,14 @@
+name: ItemNBTEdit
+main: ml.mcos.itemnbtedit.ItemNBTEdit
+version: 1.2.0
+api-version: 1.13
+commands:
+  nbt:
+    usage: '/nbt [ItemNBT]'
+    description: '查看或修改主手中物品的NBT'
+    permission: 'ItemNBTEdit.nbt'
+    permission-message: '§cYou don''t have permission!'
+permissions:
+  ItemNBTEdit.nbt:
+    description: '有权使用/nbt命令'
+    default: 'op'
