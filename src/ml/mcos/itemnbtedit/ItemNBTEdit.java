@@ -87,6 +87,10 @@ public class ItemNBTEdit extends JavaPlugin {
 
     private void newNBTObject() {
         switch (mcVersion) {
+            case 18:
+            case 17:
+                nbt = new V17AndAfter(mcVersion);
+                break;
             case 16:
             case 15:
             case 14:
@@ -108,7 +112,8 @@ public class ItemNBTEdit extends JavaPlugin {
                 nbt = new V10AndBefore();
                 break;
             default:
-                nbt = new V17AndAfter();
+                getLogger().warning("警告: 当前游戏版本尚未经过测试, 可能无法正常使用。");
+                nbt = new V17AndAfter(mcVersion);
         }
     }
 

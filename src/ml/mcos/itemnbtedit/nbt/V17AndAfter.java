@@ -14,22 +14,40 @@ public class V17AndAfter implements ItemNBT {
     Method asNMSCopy;
     Method save;
     Method asBukkitCopy;
-    Method a;
+    Method createStack;
     Method parse;
 
-    public V17AndAfter() {
+    public V17AndAfter(int mcVersion) {
         try {
             CraftItemStack = Class.forName(OBC_PACKAGE + ".inventory.CraftItemStack");
             NBTTagCompound = Class.forName("net.minecraft.nbt.NBTTagCompound");
             ItemStack = Class.forName("net.minecraft.world.item.ItemStack");
             asNMSCopy = CraftItemStack.getMethod("asNMSCopy", ItemStack.class);
             asBukkitCopy = CraftItemStack.getMethod("asBukkitCopy", ItemStack);
-            parse = Class.forName("net.minecraft.nbt.MojangsonParser").getMethod("parse", String.class);
-            save = ItemStack.getMethod("save", NBTTagCompound);
-            a = ItemStack.getMethod("a", NBTTagCompound);
+            parse = Class.forName("net.minecraft.nbt.MojangsonParser").getMethod(getMethodName(mcVersion, "parse"), String.class);
+            save = ItemStack.getMethod(getMethodName(mcVersion, "save"), NBTTagCompound);
+            createStack = ItemStack.getMethod(getMethodName(mcVersion, "createStack"), NBTTagCompound);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private String getMethodName(int mcVersion, String method) {
+        switch (method) {
+            case "parse":
+                if (mcVersion > 17) {
+                    return "a";
+                }
+                break;
+            case "save":
+                if (mcVersion > 17) {
+                    return "b";
+                }
+                break;
+            case "createStack":
+                return "a";
+        }
+        return method;
     }
 
     protected String asNMSCopy(ItemStack item) {
@@ -48,7 +66,7 @@ public class V17AndAfter implements ItemNBT {
 
     protected ItemStack asBukkitCopy(String nbt) throws Throwable {
         try {
-            return (ItemStack) asBukkitCopy.invoke(null, a.invoke(null, parse.invoke(null, nbt)));
+            return (ItemStack) asBukkitCopy.invoke(null, createStack.invoke(null, parse.invoke(null, nbt)));
         } catch (InvocationTargetException e) {
             throw e.getCause();
         } catch (Exception e) {

@@ -1,6 +1,6 @@
 name: ItemNBTEdit
 main: ml.mcos.itemnbtedit.ItemNBTEdit
-version: 1.2.0
+version: 1.2.1
 api-version: 1.13
 commands:
   nbt:

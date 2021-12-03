@@ -12,7 +12,7 @@ public class V10AndBefore extends V7Base {
     public V10AndBefore() {
         try {
             createStack = ItemStack.getMethod("createStack", NBTTagCompound);
-        } catch (Exception e) {
+        } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
     }
