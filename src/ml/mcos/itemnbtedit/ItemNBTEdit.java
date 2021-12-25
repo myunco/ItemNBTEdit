@@ -15,7 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class ItemNBTEdit extends JavaPlugin {
     public static int mcVersion;
     public static int mcVersionPatch;
-    ItemNBT nbt;
+    private ItemNBT nbt;
 
     @Override
     public void onEnable() {
@@ -69,14 +69,14 @@ public class ItemNBTEdit extends JavaPlugin {
     }
 
     @SuppressWarnings("deprecation")
-    ItemStack getItemInMainHand(Player player) {
+    private ItemStack getItemInMainHand(Player player) {
         if (mcVersion < 9) {
             return player.getItemInHand();
         }
         return player.getInventory().getItemInMainHand();
     }
 
-    int getMinecraftVersion() {
+    private int getMinecraftVersion() {
         String[] version = getServer().getBukkitVersion().replace('-', '.').split("\\.");
         try {
             mcVersionPatch = Integer.parseInt(version[2]);
@@ -117,7 +117,7 @@ public class ItemNBTEdit extends JavaPlugin {
         }
     }
 
-    String mergeString(String[] args, int start) {
+    private String mergeString(String[] args, int start) {
         StringBuilder builder = new StringBuilder();
         for (int i = start; i < args.length; i++) {
             if (i != start) {
