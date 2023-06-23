@@ -87,6 +87,7 @@ public class ItemNBTEdit extends JavaPlugin {
 
     private void newNBTObject() {
         switch (mcVersion) {
+            case 20:
             case 19:
             case 18:
             case 17:
