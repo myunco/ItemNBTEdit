@@ -26,11 +26,7 @@ How to install? / Installation / Setup
 
 Building
 ---
-After cloning this repository, add [spigot-1.16.5.jar](https://getbukkit.org/get/RD0y91OTotryPrElNQe4ovBLDNweoO5Z) to dependencies, build the project using IDEA Artifacts.
-
-Contributing
----
-Thanks, but I don't think contributions are needed at this time.
+After cloning this repository, add [Spigot-1.16.5.jar](https://getbukkit.org/get/RD0y91OTotryPrElNQe4ovBLDNweoO5Z) to dependencies, build the project using IDEA Artifacts.
 
 # Acknowledgments
 Thanks to [JetBrains](https://www.jetbrains.com/?from=ServerMonitor) for the [Free Open Source Licenses](https://jb.gg/OpenSourceSupport)
